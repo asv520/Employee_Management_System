@@ -52,14 +52,16 @@ public class Main {
                 String password = reader.readLine();
 
                 if(Objects.equals(userName, "user") && Objects.equals(password, "user123")) {
+                    System.out.println("Login Successful");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     con = DBConnection.getConnection();
                     System.out.println("Enter your unique employee id: ");
                     int id = Integer.parseInt(reader.readLine());
                     PreparedStatement ps = con.prepareStatement("select *from EmployeeDetails where id = "+id);
                     ResultSet rs = ps.executeQuery();
-                    System.out.format("%s %10s %10s %10s %10s %10s\n", "ID","FName","LName","Email", "Salary", "Mobile");
-                    System.out.format("%d %10s %10s %10s %10s %10s\n",rs.getInt("ID"), rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Email"), rs.getString("Salary"), rs.getString("ContactNumber"));
+                    while(rs.next()) {
+                        System.out.println("First Name: "+rs.getString(2)+"\nLast Name: "+rs.getString(3)+"\nEmail ID: "+rs.getString(4)+"\nSalary: "+rs.getString(5)+"\nContact Number: "+rs.getString(6));
+                    }
                     con.close();
                     ps.close();
                     rs.close();
