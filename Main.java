@@ -5,11 +5,11 @@ import java.sql.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        Connection con;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Choose Login type:\n1. Admin\n2. Employee");
@@ -26,7 +26,7 @@ public class Main {
                 if(Objects.equals(userName, "admin") && Objects.equals(password, "admin256")) {
                     System.out.println("Login Successful");
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Employees", "root", "Kronos@7");
+                    con = DBConnection.getConnection();
                     System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees");
                     int actionChoice = Integer.parseInt(reader.readLine());
                     switch (actionChoice) {
@@ -89,7 +89,7 @@ public class Main {
 
                 if(Objects.equals(userName, "user") && Objects.equals(password, "user123")) {
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Details", "root", "Kronos@7");
+                    con = DBConnection.getConnection();
                     System.out.println("Enter your unique employee id: ");
                     int id = Integer.parseInt(reader.readLine());
                     PreparedStatement ps = con.prepareStatement("select *from EmployeeDetails where id = "+id);
