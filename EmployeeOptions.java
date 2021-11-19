@@ -36,19 +36,21 @@ public class EmployeeOptions {
         System.out.println(i+" row(s) added");
         ps.close();
     }
-    public void deleteEmployee() throws IOException, SQLException {
+    public void deleteEmployee() throws IOException, SQLException, ClassNotFoundException {
         System.out.println("Enter the employee id to delete an existing employee");
         int id = Integer.parseInt(reader.readLine());
 
+        con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement("delete from EmployeeDetails where id = "+id);
 
         int i = ps.executeUpdate();
         System.out.println(i+" record deleted");
         ps.close();
     }
-    public void displayEmployees() throws SQLException {
-        System.out.println("List of Employees: ");
+    public void displayEmployees() throws SQLException, ClassNotFoundException {
+        con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement("select *from EmployeeDetails order by id");
+        System.out.println("List of Employees: ");
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             System.out.println(rs.getString("FirstName")+" "+rs.getString("LastName"));
