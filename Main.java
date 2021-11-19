@@ -9,9 +9,10 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Connection con;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DBConnection.getConnection();
+        EmployeeOptions dao = new EmployeeOptions();
         System.out.println("Choose Login type:\n1. Admin\n2. Employee");
         int choice = Integer.parseInt(reader.readLine());
 
@@ -25,56 +26,19 @@ public class Main {
 
                 if(Objects.equals(userName, "admin") && Objects.equals(password, "admin256")) {
                     System.out.println("Login Successful");
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    con = DBConnection.getConnection();
                     System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees");
                     int actionChoice = Integer.parseInt(reader.readLine());
                     switch (actionChoice) {
                         case 1 -> {
-                            System.out.println("Enter the following to add new employee: ");
-                            System.out.println("id, first name, last name, email-id, contact number");
-                            System.out.println("WARNING: ID can not be null");
-                            int id = Integer.parseInt(reader.readLine());
-                            String fname = reader.readLine();
-                            String lname = reader.readLine();
-                            String email = reader.readLine();
-                            String salary = reader.readLine();
-                            String contact = reader.readLine();
-
-                            PreparedStatement ps = con.prepareStatement("insert into EmployeeDetails values(?,?,?,?,?,?)");
-                            ps.setInt(1, id);
-                            ps.setString(2, fname);
-                            ps.setString(3, lname);
-                            ps.setString(4, email);
-                            ps.setString(5, salary);
-                            ps.setString(6, contact);
-
-                            int i = ps.executeUpdate();
-                            System.out.println(i+" row(s) added");
-                            ps.close();
+                            dao.addEmployee();
                         }
                         case 2 -> {
-                            System.out.println("Enter the employee id to delete an existing employee");
-                            int id = Integer.parseInt(reader.readLine());
-
-                            PreparedStatement ps = con.prepareStatement("delete from EmployeeDetails where id = "+id);
-
-                            int i = ps.executeUpdate();
-                            System.out.println(i+" record deleted");
-                            ps.close();
+                            dao.deleteEmployee();
                         }
                         case 3 -> {
-                            System.out.println("List of Employees: ");
-                            PreparedStatement ps = con.prepareStatement("select *from EmployeeDetails order by id");
-                            ResultSet rs = ps.executeQuery();
-                            while (rs.next()) {
-                                System.out.println(rs.getString("FirstName")+" "+rs.getString("LastName"));
-                            }
-                            ps.close();
-                            rs.close();
+                            dao.displayEmployees();
                         }
                     }
-                    con.close();
                 }
                 else{
                     System.out.println("Invalid credentials");
