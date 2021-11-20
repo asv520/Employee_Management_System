@@ -48,7 +48,7 @@ public class Main {
                         }
                         case 5 -> {
                             System.out.println("Choose the field to be updated: ");
-                            System.out.println("1. ID\n 2. First Name\n3. Last Name\n4. Email ID\n5. Salary\n6. Contact Number");
+                            System.out.println("1. ID\n2. First Name\n3. Last Name\n4. Email ID\n5. Salary\n6. Contact Number");
                             EmployeeUpdate eu = new EmployeeUpdate();
                             int options = Integer.parseInt(reader.readLine());
                             switch(options){
