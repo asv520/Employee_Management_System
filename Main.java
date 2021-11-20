@@ -9,6 +9,7 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        System.out.println("EMPLOYEE MANAGEMENT SYSTEM");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DBConnection.getConnection();
