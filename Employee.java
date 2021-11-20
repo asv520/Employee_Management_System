@@ -1,11 +1,13 @@
 package com.company;
 
 public class Employee {
-    String id, name, email, salary, contactNumber;
+    int id;
+    String fname, lname, email, salary, contactNumber;
 
-    public Employee(String id, String name, String email, String salary, String contactNumber) {
+    public Employee(int id, String fname, String lname, String email, String salary, String contactNumber) {
         this.id = id;
-        this.name = name;
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.salary = salary;
         this.contactNumber = contactNumber;
@@ -13,5 +15,5 @@ public class Employee {
 
     public Employee(){
     }
-    
+
 }
