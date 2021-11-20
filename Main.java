@@ -26,7 +26,7 @@ public class Main {
 
                 if(Objects.equals(userName, "admin") && Objects.equals(password, "admin256")) {
                     System.out.println("Login Successful");
-                    System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees");
+                    System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees\n4. View detailed list");
                     int actionChoice = Integer.parseInt(reader.readLine());
                     switch (actionChoice) {
                         case 1 -> {
@@ -37,6 +37,17 @@ public class Main {
                         }
                         case 3 -> {
                             dao.displayEmployees();
+                        }
+                        case 4 -> {
+                            con = DBConnection.getConnection();
+                            PreparedStatement ps = con.prepareStatement("select *from EmployeeDetails order by id");
+                            ResultSet rs = ps.executeQuery();
+                            DetailedList d = new DetailedList();
+                            while(rs.next())
+                            d.displayDetails(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                        }
+                        default -> {
+                            System.out.println("Invalid Input");
                         }
                     }
                 }
