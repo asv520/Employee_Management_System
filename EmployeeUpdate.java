@@ -26,7 +26,7 @@ public class EmployeeUpdate {
         System.out.println("Enter the new first name for this employee");
         String fname = reader.readLine();
         con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set FirstName = "+fname+" where id = "+id);
+        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set FirstName = "+"'"+fname+"'"+" where id = "+id);
         int i = ps.executeUpdate();
         System.out.println(i+" row updated");
     }
@@ -36,7 +36,7 @@ public class EmployeeUpdate {
         System.out.println("Enter the new first name for this employee");
         String lname = reader.readLine();
         con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set LastName = "+lname+" where id = "+id);
+        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set LastName = "+"'"+lname+"'"+" where id = "+id);
         int i = ps.executeUpdate();
         System.out.println(i+" row updated");
     }
@@ -46,7 +46,7 @@ public class EmployeeUpdate {
         System.out.println("Enter the new email id for this employee");
         String email = reader.readLine();
         con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set Email = "+email+" where id = "+id);
+        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set Email = "+"'"+email+"'"+" where id = "+id);
         int i = ps.executeUpdate();
         System.out.println(i+" row updated");
     }
@@ -56,7 +56,7 @@ public class EmployeeUpdate {
         System.out.println("Enter the new salary for this employee");
         String salary = reader.readLine();
         con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set Salary = "+salary+" where id = "+id);
+        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set Salary = "+"'"+salary+"'"+" where id = "+id);
         int i = ps.executeUpdate();
         System.out.println(i+" row updated");
     }
@@ -66,7 +66,7 @@ public class EmployeeUpdate {
         System.out.println("Enter the new contact number for this employee");
         String contact = reader.readLine();
         con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set ContactNumber = "+contact+" where id = "+id);
+        PreparedStatement ps = con.prepareStatement("update EmployeeDetails set ContactNumber = "+"'"+contact+"'"+" where id = "+id);
         int i = ps.executeUpdate();
         System.out.println(i+" row updated");
     }
