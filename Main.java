@@ -26,7 +26,7 @@ public class Main {
 
                 if(Objects.equals(userName, "admin") && Objects.equals(password, "admin256")) {
                     System.out.println("Login Successful");
-                    System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees\n4. View detailed list");
+                    System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees\n4. View detailed list\n5. Update details for an Employee");
                     int actionChoice = Integer.parseInt(reader.readLine());
                     switch (actionChoice) {
                         case 1 -> {
@@ -45,6 +45,35 @@ public class Main {
                             DetailedList d = new DetailedList();
                             while(rs.next())
                             d.displayDetails(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                        }
+                        case 5 -> {
+                            System.out.println("Choose the field to be updated: ");
+                            System.out.println("1. ID\n 2. First Name\n3. Last Name\n4. Email ID\n5. Salary\n6. Contact Number");
+                            EmployeeUpdate eu = new EmployeeUpdate();
+                            int options = Integer.parseInt(reader.readLine());
+                            switch(options){
+                                case 1 -> {
+                                    eu.updateId();
+                                }
+                                case 2 -> {
+                                    eu.updateFirstName();
+                                }
+                                case 3 -> {
+                                    eu.updateLastName();
+                                }
+                                case 4 -> {
+                                    eu.updateEmail();
+                                }
+                                case 5 -> {
+                                    eu.updateSalary();
+                                }
+                                case 6 -> {
+                                    eu.updateContact();
+                                }
+                                default -> {
+                                    System.out.println("Invalid choice");
+                                }
+                            }
                         }
                         default -> {
                             System.out.println("Invalid Input");
