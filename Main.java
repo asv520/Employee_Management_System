@@ -16,6 +16,7 @@ public class Main {
         EmployeeOptions dao = new EmployeeOptions();
         System.out.println("Choose Login type:\n1. Admin\n2. Employee");
         int choice = Integer.parseInt(reader.readLine());
+        Login l = new Login();
 
         switch(choice){
             case 1 -> {
@@ -25,7 +26,7 @@ public class Main {
                 System.out.print("Enter the password: ");
                 String password = reader.readLine();
 
-                if(Objects.equals(userName, "admin") && Objects.equals(password, "admin256")) {
+                if(Objects.equals(userName, l.getAdminUserName()) && Objects.equals(password, l.getAdminPassword())) {
                     System.out.println("Login Successful");
                     System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees\n4. View detailed list\n5. Update details for an Employee");
                     int actionChoice = Integer.parseInt(reader.readLine());
@@ -92,7 +93,7 @@ public class Main {
                 System.out.print("Enter the password: ");
                 String password = reader.readLine();
 
-                if(Objects.equals(userName, "user") && Objects.equals(password, "user123")) {
+                if(Objects.equals(userName, l.getEmployeeUserName(userName)) && Objects.equals(password, l.getEmployeePassword(password))) {
                     System.out.println("Login Successful");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     con = DBConnection.getConnection();
