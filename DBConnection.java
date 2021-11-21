@@ -8,4 +8,8 @@ public class DBConnection {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Employees","root","Kronos@7");
         return con;
     }
+    public static Connection getConnectionForLogin() throws ClassNotFoundException, SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Credentials","root","Kronos@7");
+        return con;
+    }
 }
