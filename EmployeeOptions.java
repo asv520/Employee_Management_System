@@ -15,7 +15,7 @@ public class EmployeeOptions {
         con = DBConnection.getConnection();
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Enter the following to add new employee: ");
-        System.out.println("id, first name, last name, email-id, contact number");
+        System.out.println("id, first name, last name, email-id, salary, contact number");
         System.out.println("WARNING: ID can not be null");
         int id = Integer.parseInt(reader.readLine());
         String fname = reader.readLine();
