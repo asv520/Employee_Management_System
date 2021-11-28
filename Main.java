@@ -28,6 +28,9 @@ public class Main {
 
                 if(Objects.equals(userName, l.getAdminUserName()) && Objects.equals(password, l.getAdminPassword())) {
                     System.out.println("Login Successful");
+                    //For first 3 options, EmployeeOptions class will be used
+                    //For 4th option, DetailedList class is being used
+                    //For 5th option, EmployeeUpdate class is being used
                     System.out.println("Select among the following:\n1. Add new employee\n2. Delete an existing employee\n3. View list of all employees\n4. View detailed list\n5. Update details for an Employee");
                     int actionChoice = Integer.parseInt(reader.readLine());
                     switch (actionChoice) {

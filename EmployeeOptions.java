@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class EmployeeOptions {
     Connection con;
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public void addEmployee() throws ClassNotFoundException, SQLException, IOException {
         con = DBConnection.getConnection();
         Class.forName("com.mysql.cj.jdbc.Driver");
